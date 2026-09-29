@@ -79,6 +79,14 @@ if ($video['status'] !== 'ready') {
                     <span class="time-display"><span id="curTimeSmall">0:00</span> / <span id="durTimeSmall">0:00</span></span>
                 </div>
                 <div class="controls-row-right">
+                    <select id="playbackSpeed" class="playback-speed" aria-label="Playback speed" title="Playback speed">
+                        <option value="0.5">0.5×</option>
+                        <option value="0.75">0.75×</option>
+                        <option value="1" selected>1×</option>
+                        <option value="1.25">1.25×</option>
+                        <option value="1.5">1.5×</option>
+                        <option value="2">2×</option>
+                    </select>
                     <div class="volume-row">
                         <button class="ctrl-btn" id="muteBtn" title="Mute">
                             <svg id="volIcon" viewBox="0 0 24 24"><path d="M3 10v4h4l5 5V5L7 10H3z"/></svg>

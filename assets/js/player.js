@@ -26,6 +26,29 @@
     const resumeTimeSpan = document.getElementById('resumeTime');
     const resumeYes = document.getElementById('resumeYes');
     const resumeNo = document.getElementById('resumeNo');
+    const playbackSpeed = document.getElementById('playbackSpeed');
+    const speedStorageKey = 'qPlayer.playbackSpeed';
+    const supportedSpeeds = [0.5, 0.75, 1, 1.25, 1.5, 2];
+
+    // Storage may be blocked; speed controls should still work for this video.
+    let savedSpeed = 1;
+    try {
+        const storedSpeed = Number(localStorage.getItem(speedStorageKey));
+        if (supportedSpeeds.includes(storedSpeed)) savedSpeed = storedSpeed;
+    } catch (_) {}
+    video.defaultPlaybackRate = savedSpeed;
+    video.playbackRate = savedSpeed;
+    playbackSpeed.value = String(savedSpeed);
+
+    playbackSpeed.addEventListener('change', () => {
+        const speed = Number(playbackSpeed.value);
+        if (!supportedSpeeds.includes(speed)) return;
+        video.defaultPlaybackRate = speed;
+        video.playbackRate = speed;
+        try {
+            localStorage.setItem(speedStorageKey, String(speed));
+        } catch (_) {}
+    });
 
     function formatTime(seconds) {
         seconds = Math.max(0, Math.floor(seconds || 0));
@@ -148,7 +171,7 @@
 
     // --- Keyboard shortcuts ---
     document.addEventListener('keydown', e => {
-        if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+        if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) return;
         switch (e.key) {
             case ' ':
             case 'k':

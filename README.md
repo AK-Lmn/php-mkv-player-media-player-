@@ -26,6 +26,7 @@ Unlike traditional desktop media players, Q Player runs entirely inside your bro
 - Browser-based playback
 - Resume videos from where you stopped watching
 - Skip forward and backward by 10 seconds
+- Playback speeds from 0.5× to 2×, with your preference remembered in this browser
 - Draggable seek bar
 - Automatic thumbnail generation
 - Displays video duration and file size
