@@ -227,11 +227,16 @@
 
     // --- Keyboard shortcuts ---
     document.addEventListener('keydown', e => {
-        if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) return;
+        if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement?.tagName)) return;
 
         if (e.key === 'Escape' && isShortcutsOpen()) {
             e.preventDefault();
             closeShortcuts();
+            return;
+        }
+
+        // Allow Space to activate focused buttons (e.g. shortcuts toggle or close button)
+        if (e.key === ' ' && document.activeElement?.tagName === 'BUTTON') {
             return;
         }
 
